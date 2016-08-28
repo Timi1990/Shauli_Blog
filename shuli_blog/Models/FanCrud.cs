@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
- 
+
 namespace shuli_blog.Models
 {
     public class FanCrud : ICrud<Fan>
     {
         private FanContext db = new FanContext();
-        
+
         public Fan index(int id)
         {
             throw new NotImplementedException();
@@ -18,9 +18,9 @@ namespace shuli_blog.Models
 
         public List<Fan> list()
         {
-            var query = from fan in db.fans select fan;
+            var query = from fan in db.Fans select fan;
 
-           return query.ToList();
+            return query.ToList();
         }
 
         public void details(Fan entity)
@@ -37,5 +37,6 @@ namespace shuli_blog.Models
         {
             throw new NotImplementedException();
         }
-   
+
+    }
 }

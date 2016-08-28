@@ -1,4 +1,5 @@
-﻿using System;
+﻿using shuli_blog.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace shuli_blog.Controllers
 {
     public class BlogPageController : Controller
     {
+        
+
         public ActionResult Index()
         {
             return View();  

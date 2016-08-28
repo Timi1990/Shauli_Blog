@@ -5,17 +5,24 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
+
 namespace shuli_blog.Models
 {
-        private enum Gender{
+    public class Fan {
+        public enum Gender
+        {
             MALE,
             FEMALE
         }
-
-
-    public class Fan 
-    {
-
+   
+        public Fan(int id, string fname, string lname, DateTime bday, int years)
+        {
+            this.ID = id;
+            this.FirstName = fname;
+            this.LastName = lname;
+            this.Birthday = bday;
+            this.years = years;
+        }
         [Required]
         [Display(Name = "ID")]
         public int ID { get; set; }
@@ -32,8 +39,8 @@ namespace shuli_blog.Models
 
 
         [DisplayFormat(NullDisplayText = "No gender")]
-        private Gender Gender { get; set; }
-
+        private Gender gender;
+        
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Birthday")]
