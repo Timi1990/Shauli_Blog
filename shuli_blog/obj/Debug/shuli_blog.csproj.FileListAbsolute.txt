@@ -172,3 +172,5 @@ D:\Shauli_Blog\Shauli_Blog\shuli_blog\bin\zh-Hans\System.Spatial.resources.dll
 D:\Shauli_Blog\Shauli_Blog\shuli_blog\bin\zh-Hant\System.Spatial.resources.dll
 D:\Shauli_Blog\Shauli_Blog\shuli_blog\bin\EntityFramework.SqlServer.dll
 D:\Shauli_Blog\Shauli_Blog\shuli_blog\bin\EntityFramework.SqlServer.xml
+D:\Shauli_Blog\Shauli_Blog\shuli_blog\obj\Debug\shuli_blog.Migrations.InitialCreate.resources
+D:\Shauli_Blog\Shauli_Blog\shuli_blog\obj\Debug\shuli_blog.csproj.GenerateResource.Cache

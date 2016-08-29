@@ -9,13 +9,13 @@ namespace shuli_blog.Migrations
         {
             CreateTable(
                 "dbo.Fan",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        FirstName = c.String(nullable: false),
-                        LastName = c.String(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID);
+                c=> new{
+                    ID = c.Int(nullable : false,identity : true),
+                    FirstName = c.String(nullable : false),
+                    LastName = c.String(nullable : false),
+                    Bday = c.DateTime(),
+                    Seniority = c.Int(),
+                }).PrimaryKey(t => t.ID);
             
         }
         

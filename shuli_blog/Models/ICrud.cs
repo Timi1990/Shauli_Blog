@@ -11,7 +11,7 @@ namespace shuli_blog.Models
         E index(int id);
         List<E> list();
         void details(E entity);
-        Boolean delete(int id);
-        E create();
+        Boolean delete(E entity);
+        E create(E entity);
     }
 }

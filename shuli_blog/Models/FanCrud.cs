@@ -1,5 +1,6 @@
 ﻿using shuli_blog.DAL;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -9,33 +10,43 @@ namespace shuli_blog.Models
 {
     public class FanCrud : ICrud<Fan>
     {
+        private static string NEW_LINE = "\n";
         private FanContext db = new FanContext();
 
         public Fan index(int id)
         {
-            throw new NotImplementedException();
+            //todo check if return works
+            return db.Fans.Find(id);
         }
 
         public List<Fan> list()
         {
-            var query = from fan in db.Fans select fan;
-
-            return query.ToList();
+            return db.Fans.ToList();
         }
 
-        public void details(Fan entity)
+        public void details(Fan fan)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(fan.ID + NEW_LINE + fan.FirstName + NEW_LINE + fan.LastName + fan.gender + NEW_LINE + fan.Bday
+                + NEW_LINE + fan.Seniority + NEW_LINE);
+            
         }
 
-        public bool delete(int id)
+        public bool delete(Fan fan)
         {
-            throw new NotImplementedException();
+            if (db.Fans.Remove(fan).Equals(fan))
+            {
+                db.SaveChanges();
+                return true;
+            }
+                
+            return false;
         }
 
-        public Fan create()
+        public Fan create(Fan fan)
         {
-            throw new NotImplementedException();
+            db.Fans.Add(fan);
+            db.SaveChanges();
+            return fan;
         }
 
     }
