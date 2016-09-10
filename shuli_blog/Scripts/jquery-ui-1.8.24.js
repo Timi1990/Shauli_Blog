@@ -3128,7 +3128,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			this._cacheHelperProportions();
 
 
-		//Post 'activate' events to possible containers
+		//Comment 'activate' events to possible containers
 		if(!noActivation) {
 			 for (var i = this.containers.length - 1; i >= 0; i--) { this.containers[i]._trigger("activate", event, self._uiHash(this)); }
 		}
@@ -3234,7 +3234,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		//Post events to containers
+		//Comment events to containers
 		this._contactContainers(event);
 
 		//Interconnect with droppables
@@ -3289,7 +3289,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			else
 				this.currentItem.show();
 
-			//Post deactivating events to containers
+			//Comment deactivating events to containers
 			for (var i = this.containers.length - 1; i >= 0; i--){
 				this.containers[i]._trigger("deactivate", null, self._uiHash(this));
 				if(this.containers[i].containerCache.over) {
@@ -3932,7 +3932,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		//Post events to containers
+		//Comment events to containers
 		for (var i = this.containers.length - 1; i >= 0; i--){
 			if(!noPropagation) delayedTriggers.push((function(c) { return function(event) { c._trigger("deactivate", event, this._uiHash(this)); };  }).call(this, this.containers[i]));
 			if(this.containers[i].containerCache.over) {
@@ -7586,7 +7586,7 @@ $.extend(Datepicker.prototype, {
 		if (!inst.inline) {
 			var showAnim = $.datepicker._get(inst, 'showAnim');
 			var duration = $.datepicker._get(inst, 'duration');
-			var postProcess = function() {
+			var CommentProcess = function() {
 				var cover = inst.dpDiv.find('iframe.ui-datepicker-cover'); // IE6- only
 				if( !! cover.length ){
 					var borders = $.datepicker._getBorders(inst.dpDiv);
@@ -7597,11 +7597,11 @@ $.extend(Datepicker.prototype, {
 			inst.dpDiv.zIndex($(input).zIndex()+1);
 			$.datepicker._datepickerShowing = true;
 			if ($.effects && $.effects[showAnim])
-				inst.dpDiv.show(showAnim, $.datepicker._get(inst, 'showOptions'), duration, postProcess);
+				inst.dpDiv.show(showAnim, $.datepicker._get(inst, 'showOptions'), duration, CommentProcess);
 			else
-				inst.dpDiv[showAnim || 'show']((showAnim ? duration : null), postProcess);
+				inst.dpDiv[showAnim || 'show']((showAnim ? duration : null), CommentProcess);
 			if (!showAnim || !duration)
-				postProcess();
+				CommentProcess();
 			if (inst.input.is(':visible') && !inst.input.is(':disabled'))
 				inst.input.focus();
 			$.datepicker._curInst = inst;
@@ -7702,16 +7702,16 @@ $.extend(Datepicker.prototype, {
 		if (this._datepickerShowing) {
 			var showAnim = this._get(inst, 'showAnim');
 			var duration = this._get(inst, 'duration');
-			var postProcess = function() {
+			var CommentProcess = function() {
 				$.datepicker._tidyDialog(inst);
 			};
 			if ($.effects && $.effects[showAnim])
-				inst.dpDiv.hide(showAnim, $.datepicker._get(inst, 'showOptions'), duration, postProcess);
+				inst.dpDiv.hide(showAnim, $.datepicker._get(inst, 'showOptions'), duration, CommentProcess);
 			else
 				inst.dpDiv[(showAnim == 'slideDown' ? 'slideUp' :
-					(showAnim == 'fadeIn' ? 'fadeOut' : 'hide'))]((showAnim ? duration : null), postProcess);
+					(showAnim == 'fadeIn' ? 'fadeOut' : 'hide'))]((showAnim ? duration : null), CommentProcess);
 			if (!showAnim)
-				postProcess();
+				CommentProcess();
 			this._datepickerShowing = false;
 			var onClose = this._get(inst, 'onClose');
 			if (onClose)

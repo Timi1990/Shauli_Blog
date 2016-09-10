@@ -14,16 +14,19 @@ namespace shuli_blog.Controllers
     public class BlogPageController : Controller
     {
 
-        FanService service = new FanService();
+        //FanService service = new FanService();
+        private PostService postService = new PostService();
+        private CommentService commentService = new CommentService();
+
         
         public ActionResult Index()
         {
-            Fan fan = service.create("john", "cena", DateTime.Parse("2004-02-04"), 6);
+            /*Fan fan = service.create("john", "cena", DateTime.Parse("2004-02-04"), 6);
             service.details(fan);
             Fan fan2 = service.index(3);
             service.details(fan2);
             List<Fan> list = service.list();
-            Boolean boo = service.delete(fan2);
+            Boolean boo = service.delete(fan2);*/
             return View();  
         }
 

@@ -17,7 +17,7 @@ namespace shuli_blog.Migrations
 
         protected override void Seed(FanContext context)
         {
-            var fans = new List<Fan>
+            /*var fans = new List<Fan>
             {
                 new Fan{FirstName = "artiom", LastName = "petrov",Bday = DateTime.Parse("1990-01-01"),  Seniority = 1},
                 new Fan{FirstName = "yoav", LastName = "stezki",Bday = DateTime.Parse("1990-01-02"), Seniority = 2},
@@ -25,7 +25,8 @@ namespace shuli_blog.Migrations
                 new Fan{FirstName = "bla22", LastName = "bla22",Bday = DateTime.Parse("1990-01-07"), Seniority = 4}
             };
             fans.ForEach(s => context.Fans.AddOrUpdate(p => p.ID, s));
-            context.SaveChanges();
+            context.SaveChanges();*/
+            
         }
     }
 }

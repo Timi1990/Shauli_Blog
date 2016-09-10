@@ -189,6 +189,7 @@
     <Compile Include="Controllers\BlogPageController.cs" />
     <Compile Include="Controllers\FanPageController.cs" />
     <Compile Include="DAL\FanContext.cs" />
+    <Compile Include="DAL\BloggingContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,11 +197,18 @@
     <Compile Include="Migrations\201608281814550_InitialCreate.Designer.cs">
       <DependentUpon>201608281814550_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\BlogConfig.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Comment.cs" />
+    <Compile Include="Models\CommentCrud.cs" />
     <Compile Include="Models\FanCrud.cs" />
     <Compile Include="Models\Fan.cs" />
     <Compile Include="Models\ICrud.cs" />
+    <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\PostCrud.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CommentService.cs" />
+    <Compile Include="Services\PostService.cs" />
     <Compile Include="Services\FanService.cs" />
     <Compile Include="Services\IService.cs" />
   </ItemGroup>

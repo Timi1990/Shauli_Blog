@@ -257,20 +257,20 @@ aside section {
 			}
 
 /*------------------------------
-=BLOG POST
+=BLOG Comment
 ------------------------------*/
-.blogPost header p, .blogPost header p a {
+.blogComment header p, .blogComment header p a {
 		font-size: 14px;
 		font-style: italic;
 		color: #777;
 	}
 	
-		.blogPost header p a:hover {
+		.blogComment header p a:hover {
 			text-decoration: none;
 			color: #000;
 		}
 
-.blogPost div {
+.blogComment div {
 	/* Column-count not implemented yet */
 	-moz-column-count: 2;
 	-webkit-column-count: 2;
@@ -280,12 +280,12 @@ aside section {
 	-webkit-column-gap: 22px;
 }
 
-.blogPost img {
+.blogComment img {
 	margin: 22px 0;
 	-webkit-box-shadow: 3px 3px 7px #777;
 }
 
-.blogPost video {
+.blogComment video {
 	margin: 12px 0;
 	width: 100%;
 	height: auto;

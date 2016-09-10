@@ -3087,9 +3087,9 @@ jQuery.event = {
 			}
 		}
 
-		// Call the postDispatch hook for the mapped type
-		if ( special.postDispatch ) {
-			special.postDispatch.call( this, event );
+		// Call the CommentDispatch hook for the mapped type
+		if ( special.CommentDispatch ) {
+			special.CommentDispatch.call( this, event );
 		}
 
 		return event.result;
@@ -3393,7 +3393,7 @@ if ( !jQuery.support.submitBubbles ) {
 			// return undefined since we don't need an event listener
 		},
 
-		postDispatch: function( event ) {
+		CommentDispatch: function( event ) {
 			// If form was submitted by the user, bubble the event up the tree
 			if ( event._submit_bubble ) {
 				delete event._submit_bubble;
@@ -4842,22 +4842,22 @@ function condense( unmatched, map, filter, context, xml ) {
 	return newUnmatched;
 }
 
-function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postSelector ) {
-	if ( postFilter && !postFilter[ expando ] ) {
-		postFilter = setMatcher( postFilter );
+function setMatcher( preFilter, selector, matcher, CommentFilter, CommentFinder, CommentSelector ) {
+	if ( CommentFilter && !CommentFilter[ expando ] ) {
+		CommentFilter = setMatcher( CommentFilter );
 	}
-	if ( postFinder && !postFinder[ expando ] ) {
-		postFinder = setMatcher( postFinder, postSelector );
+	if ( CommentFinder && !CommentFinder[ expando ] ) {
+		CommentFinder = setMatcher( CommentFinder, CommentSelector );
 	}
 	return markFunction(function( seed, results, context, xml ) {
 		// Positional selectors apply to seed elements, so it is invalid to follow them with relative ones
-		if ( seed && postFinder ) {
+		if ( seed && CommentFinder ) {
 			return;
 		}
 
-		var i, elem, postFilterIn,
+		var i, elem, CommentFilterIn,
 			preMap = [],
-			postMap = [],
+			CommentMap = [],
 			preexisting = results.length,
 
 			// Get initial elements from seed or context
@@ -4869,8 +4869,8 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 				elems,
 
 			matcherOut = matcher ?
-				// If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
-				postFinder || ( seed ? preFilter : preexisting || postFilter ) ?
+				// If we have a CommentFinder, or filtered seed, or non-seed CommentFilter or preexisting results,
+				CommentFinder || ( seed ? preFilter : preexisting || CommentFilter ) ?
 
 					// ...intermediate processing is necessary
 					[] :
@@ -4884,23 +4884,23 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 			matcher( matcherIn, matcherOut, context, xml );
 		}
 
-		// Apply postFilter
-		if ( postFilter ) {
-			postFilterIn = condense( matcherOut, postMap );
-			postFilter( postFilterIn, [], context, xml );
+		// Apply CommentFilter
+		if ( CommentFilter ) {
+			CommentFilterIn = condense( matcherOut, CommentMap );
+			CommentFilter( CommentFilterIn, [], context, xml );
 
 			// Un-match failing elements by moving them back to matcherIn
-			i = postFilterIn.length;
+			i = CommentFilterIn.length;
 			while ( i-- ) {
-				if ( (elem = postFilterIn[i]) ) {
-					matcherOut[ postMap[i] ] = !(matcherIn[ postMap[i] ] = elem);
+				if ( (elem = CommentFilterIn[i]) ) {
+					matcherOut[ CommentMap[i] ] = !(matcherIn[ CommentMap[i] ] = elem);
 				}
 			}
 		}
 
 		// Keep seed and results synchronized
 		if ( seed ) {
-			// Ignore postFinder because it can't coexist with seed
+			// Ignore CommentFinder because it can't coexist with seed
 			i = preFilter && matcherOut.length;
 			while ( i-- ) {
 				if ( (elem = matcherOut[i]) ) {
@@ -4913,8 +4913,8 @@ function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postS
 					matcherOut.splice( preexisting, matcherOut.length ) :
 					matcherOut
 			);
-			if ( postFinder ) {
-				postFinder( null, results, matcherOut, xml );
+			if ( CommentFinder ) {
+				CommentFinder( null, results, matcherOut, xml );
 			} else {
 				push.apply( results, matcherOut );
 			}
@@ -7448,7 +7448,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 	// Otherwise, build a param string
 	} else if ( params && typeof params === "object" ) {
-		type = "POST";
+		type = "Comment";
 	}
 
 	// Request the remote document
@@ -7497,7 +7497,7 @@ jQuery.each( "ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".sp
 	};
 });
 
-jQuery.each( [ "get", "post" ], function( i, method ) {
+jQuery.each( [ "get", "Comment" ], function( i, method ) {
 	jQuery[ method ] = function( url, data, callback, type ) {
 		// shift arguments if data argument was omitted
 		if ( jQuery.isFunction( data ) ) {

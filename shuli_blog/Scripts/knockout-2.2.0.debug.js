@@ -96,7 +96,7 @@ ko.utils = new (function () {
     }
 
     return {
-        fieldsIncludedWithJsonPost: ['authenticity_token', /^__RequestVerificationToken(_.*)?$/],
+        fieldsIncludedWithJsonComment: ['authenticity_token', /^__RequestVerificationToken(_.*)?$/],
 
         arrayForEach: function (array, action) {
             for (var i = 0, j = array.length; i < j; i++)
@@ -383,7 +383,7 @@ ko.utils = new (function () {
 
             // Workaround IE 6/7 issue
             // - https://github.com/SteveSanderson/knockout/issues/197
-            // - http://www.matts411.com/post/setting_the_name_attribute_in_ie_dom/
+            // - http://www.matts411.com/Comment/setting_the_name_attribute_in_ie_dom/
             if (ieVersion <= 7) {
                 try {
                     element.mergeAttributes(document.createElement("<input name='" + element.name + "'/>"), false);
@@ -464,10 +464,10 @@ ko.utils = new (function () {
             return JSON.stringify(ko.utils.unwrapObservable(data), replacer, space);
         },
 
-        postJson: function (urlOrForm, data, options) {
+        CommentJson: function (urlOrForm, data, options) {
             options = options || {};
             var params = options['params'] || {};
-            var includeFields = options['includeFields'] || this.fieldsIncludedWithJsonPost;
+            var includeFields = options['includeFields'] || this.fieldsIncludedWithJsonComment;
             var url = urlOrForm;
 
             // If we were given a form, use its 'action' URL and pick out any requested field values
@@ -485,7 +485,7 @@ ko.utils = new (function () {
             var form = document.createElement("form");
             form.style.display = "none";
             form.action = url;
-            form.method = "post";
+            form.method = "Comment";
             for (var key in data) {
                 var input = document.createElement("input");
                 input.name = key;
@@ -515,10 +515,10 @@ ko.exportSymbol('utils.arrayMap', ko.utils.arrayMap);
 ko.exportSymbol('utils.arrayPushAll', ko.utils.arrayPushAll);
 ko.exportSymbol('utils.arrayRemoveItem', ko.utils.arrayRemoveItem);
 ko.exportSymbol('utils.extend', ko.utils.extend);
-ko.exportSymbol('utils.fieldsIncludedWithJsonPost', ko.utils.fieldsIncludedWithJsonPost);
+ko.exportSymbol('utils.fieldsIncludedWithJsonComment', ko.utils.fieldsIncludedWithJsonComment);
 ko.exportSymbol('utils.getFormFields', ko.utils.getFormFields);
 ko.exportSymbol('utils.peekObservable', ko.utils.peekObservable);
-ko.exportSymbol('utils.postJson', ko.utils.postJson);
+ko.exportSymbol('utils.CommentJson', ko.utils.CommentJson);
 ko.exportSymbol('utils.parseJson', ko.utils.parseJson);
 ko.exportSymbol('utils.registerEventHandler', ko.utils.registerEventHandler);
 ko.exportSymbol('utils.stringifyJson', ko.utils.stringifyJson);

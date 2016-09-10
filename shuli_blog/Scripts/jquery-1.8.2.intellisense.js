@@ -304,9 +304,9 @@ intellisense.annotate(jQuery, {
     ///   <returns type="XMLDocument" />
     /// </signature>
   },
-  'post': function() {
+  'Comment': function() {
     /// <signature>
-    ///   <summary>Load data from the server using a HTTP POST request.</summary>
+    ///   <summary>Load data from the server using a HTTP Comment request.</summary>
     ///   <param name="url" type="String">A string containing the URL to which the request is sent.</param>
     ///   <param name="data" type="String">A map or string that is sent to the server with the request.</param>
     ///   <param name="success(data, textStatus, jqXHR)" type="Function">A callback function that is executed if the request succeeds.</param>

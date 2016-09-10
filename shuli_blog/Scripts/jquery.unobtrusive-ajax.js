@@ -37,7 +37,7 @@
     }
 
     function isMethodProxySafe(method) {
-        return method === "GET" || method === "POST";
+        return method === "GET" || method === "Comment";
     }
 
     function asyncOnBeforeSend(xhr, method) {
@@ -114,7 +114,7 @@
 
         method = options.type.toUpperCase();
         if (!isMethodProxySafe(method)) {
-            options.type = "POST";
+            options.type = "Comment";
             options.data.push({ name: "X-HTTP-Method-Override", value: method });
         }
 

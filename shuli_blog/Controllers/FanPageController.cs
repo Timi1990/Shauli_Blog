@@ -1,4 +1,5 @@
 ﻿using shuli_blog.DAL;
+using shuli_blog.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace shuli_blog.Controllers
 {
     public class FanPageController : Controller
     {
-        private FanContext fanContext = new FanContext();
+        private FanService service = new FanService();
 
         public ActionResult Index()
         {
