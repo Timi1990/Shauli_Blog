@@ -50,7 +50,7 @@ namespace shuli_blog.Services
             post.PublishDate = publishDate;
             post.Body = body;
             post.Video = video;
-            post.Image = Image.FromFile(image);
+            post.Image = image;
             post.CommentsList = comments;
             return post;
         }

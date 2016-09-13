@@ -27,7 +27,18 @@ namespace shuli_blog.Controllers
             service.details(fan2);
             List<Fan> list = service.list();
             Boolean boo = service.delete(fan2);*/
-            return View();  
+            
+                List<Post> allPosts = postService.list();
+
+
+                return View(allPosts);
+            
+             
+        }
+
+        public ActionResult GetMostUpdatedPost()
+        {
+            return View();
         }
 
     }

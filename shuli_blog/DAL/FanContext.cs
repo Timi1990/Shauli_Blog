@@ -22,6 +22,8 @@ namespace shuli_blog.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            Database.SetInitializer<FanContext>(null);
+            base.OnModelCreating(modelBuilder);
         }
 
     }

@@ -23,9 +23,9 @@ namespace shuli_blog.Services
 
         }
 
-        public Comment create(Post post , string commentTitle , string commentAuthor , string authorUrl , string body)
+        public Comment create(int id , string commentTitle , string commentAuthor , string authorUrl , string body)
         {
-            Comment comment = createComment(post, commentTitle, commentAuthor, authorUrl, body);
+            Comment comment = createComment(id, commentTitle, commentAuthor, authorUrl, body);
             return commentCrud.create(comment);
         }
         public void details(Comment Comment)
@@ -38,11 +38,10 @@ namespace shuli_blog.Services
             return commentCrud.delete(Comment);
         }
 
-        private Comment createComment(Post post, string commentTitle, string commentAuthor, string authorUrl, string body)
+        private Comment createComment(int id, string commentTitle, string commentAuthor, string authorUrl, string body)
         {
             Comment comment = new Comment();
-            comment.Post = post;
-            comment.PostID = post.ID;
+            comment.PostID = id;
             comment.CommentTitle = commentTitle;
             comment.CommentAuthor = commentAuthor;
             comment.AuthorURL = authorUrl;

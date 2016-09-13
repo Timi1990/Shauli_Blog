@@ -19,7 +19,8 @@ namespace shuli_blog.Models
 
         public List<Post> list()
         {
-            return db.Posts.ToList();
+            List<Post> list = db.Posts.ToList();
+            return list;
         }
 
         public void details(Post post)

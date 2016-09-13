@@ -41,21 +41,20 @@ namespace shuli_blog.Models
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Postsbody")]
-        [StringLength(MAX_POST_SIZE)]
+     
         public string Body { get; set; }
 
-        [Display(Name = "ID")]
+        [Display(Name = "Video")]
+        [DataType(DataType.Text)]
         public String Video { get; set; }
-        
-        [Display(Name = "ID")]
-        public Image Image { get; set; }
+
+        [Display(Name = "Image")]
+        [DataType(DataType.Text)]
+        public String Image { get; set; }
         
         [Display(Name = "RelatedComments")]
         [DisplayFormat(NullDisplayText = "NoComments")]
         public List<Comment> CommentsList { get; set; }
-
-
-
 
     }
 }
