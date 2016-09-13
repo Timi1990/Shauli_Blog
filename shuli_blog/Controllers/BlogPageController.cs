@@ -16,7 +16,7 @@ namespace shuli_blog.Controllers
 
         //FanService service = new FanService();
         private PostService postService = new PostService();
-        private CommentService commentService = new CommentService();
+        private BloggingContext db = new BloggingContext();
 
         
         public ActionResult Index()
@@ -27,10 +27,13 @@ namespace shuli_blog.Controllers
             service.details(fan2);
             List<Fan> list = service.list();
             Boolean boo = service.delete(fan2);*/
-            
-                List<Post> allPosts = postService.list();
 
-
+            List<Post> allPosts = db.Posts.OrderBy(post => post.PublishDate).ToList<Post>();
+                foreach (Post p in allPosts)
+                {
+                    p.CommentsList = db.Comments.Where(comment => comment.PostID == p.ID).ToList<Comment>();
+                }
+                
                 return View(allPosts);
             
              
