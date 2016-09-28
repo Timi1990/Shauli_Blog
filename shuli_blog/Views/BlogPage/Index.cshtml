@@ -4,6 +4,8 @@
 ViewBag.Title = "Index";
 }
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="~/Scripts/comments_scripts/comments.js"></script>
 
 <h2 style="text-align:center">The Blog</h2>
 
@@ -13,19 +15,16 @@ ViewBag.Title = "Index";
 </audio>
 </div>
 <br />
-<hr />
+
+<div style="padding-top: 30px;">
+    @Html.ActionLink("Search Posts", "SearchPost", "Post")
+    @Html.ActionLink("New Post", "Create", "Post")
+    @Html.ActionLink("Manage Posts", "Index", "Post")
+
+    
+
+</div>
 <br />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-   $(document).ready(function () {
-       $("#comment_button").click(function () {
-            $("#comment_div").slideDown("slow");
-        });
-    });
-</script>
-
-
-
 <section>
 
 @{if (Model == null)
@@ -34,121 +33,120 @@ ViewBag.Title = "Index";
        }
 else
     {
-<p>
-    @Html.ActionLink("Search Posts", "SearchPost", "Post")
-</p>
+
     }
     <!-- All this code should be in the else statement-->
-    
-foreach (shuli_blog.Models.Post post in Model)
-{
 
-    <div class="panel panel-success">
-        <div class="panel-heading">
-            <section id="post @post.ID">
-                <article class="blogPost">
-                    <header>
-                        <table style="width:100%;">
-                            <tr>
-                                <td>
-                                    <h2 style="text-decoration:underline;margin:0;padding:0;">@post.Title</h2>
-                                </td>
-                                <td style="text-align:right;">
-                                    <p style="margin-left:10px;margin-top:25px;">
-                                        Posted on <time datetime="2009-06-29T23:31+01:00">@post.PublishDate</time> by <a href="@post.URL">@post.Author</a>
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
-
-
-                    </header>
-                </article>
-            </section>
-        </div>
-    </div>
-    <div class="panel-body">
-        
-        <div>
-            @post.Body
-        </div>
-        @{if (File.Exists(Server.MapPath("~/Files/") + post.Image))
-        {
-            <tr>
-                <td>
-                    <img id="image_@(Html.DisplayFor(modelItem => post.ID))"
-                         src="~/Files/@(post.Image)" height="200" width="250" />
-                </td>
-            </tr>
-        }
-        }
-        @{if (File.Exists(Server.MapPath("~/Files/") + post.Video))
-        {
-            <tr>
-                <td>
-                    <video width="320" height="240" controls preload="auto">
-                        <source src="~/Files/@(@post.Video)" type="video/mp4" />
-                    </video>
-                </td>
-            </tr>
-        }
-        }
-    </div>
-    
-    
-    <section id="comments @post.ID" style="padding: 15px;">
-        @{if (post.CommentsList != null)
+    foreach (shuli_blog.Models.Post post in Model)
     {
-        <hr />
-            <h2 style="margin: 0; text-decoration:underline">Comments</h2>
-        if (post.CommentsList.Count > 0) { 
-        foreach (shuli_blog.Models.Comment comment in post.CommentsList)
-        {
-            <article>
-                <header>
-                   <p > @comment.CommentTitle by
-                    <a href="@comment.AuthorURL">@comment.CommentAuthor</a>
+        <div style="border-bottom-style: solid;border-bottom: thick dotted black;padding-bottom: 10px;">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <section id="post @post.ID">
+                        <article class="blogPost">
+                            <header>
+                                <table style="width:100%;">
+                                    <tr>
+                                        <td>
+                                            <h2 style="text-decoration:underline;margin:0;padding:0;">@post.Title</h2>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <p style="margin-left:10px;margin-top:25px;">
+                                                Posted on <time datetime="2009-06-29T23:31+01:00">@post.PublishDate</time> by <a href="@post.URL">@post.Author</a>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+
+
+                            </header>
+                        </article>
+                    </section>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div>
+                    @post.Body
+                </div>
+                @{if (File.Exists(Server.MapPath("~/Files/") + post.Image))
+                {
+                    <tr>
+                        <td>
+                            <img id="image_@(Html.DisplayFor(modelItem => post.ID))"
+                                 src="~/Files/@(post.Image)" height="200" width="250" />
+                        </td>
+                    </tr>
+                }
+                }
+                @{if (File.Exists(Server.MapPath("~/Files/") + post.Video))
+                {
+                    <tr>
+                        <td>
+                            <video width="320" height="240" controls preload="auto">
+                                <source src="~/Files/@(@post.Video)" type="video/mp4" />
+                            </video>
+                        </td>
+                    </tr>
+                }
+                }
+            </div>
+
+            <section id="comments @post.ID" style="padding: 15px;">
+                @{if (post.CommentsList != null)
+                {
+                    <h2 style="margin: 0; text-decoration:underline">Comments</h2>
+                    if (post.CommentsList.Count > 0)
+                    {
+                        foreach (shuli_blog.Models.Comment comment in post.CommentsList)
+                        {
+                            <article>
+                                <header>
+                                    <p>
+                                        @comment.CommentTitle by
+                                        <a href="@comment.AuthorURL">@comment.CommentAuthor</a>
+                                    </p>
+                                </header>
+                                <p>@comment.Body</p>
+
+                            </article>
+                        }
+                    }
+                }
+                }
+            </section>
+
+            <input type="button" id="comment_button" value="Post comment" style="padding:7px" />
+            <!-- how to pass params to actionlink? maybe js?-->
+            <div id="comment_div" style="display:none;padding: 15px;">
+                <form id="comment_form" action="@Url.Action("Create", "Comment")" method="post">
+                    @Html.AntiForgeryToken()
+                    <h3>Post a comment to the "@post.Title" post</h3>
+                    <p>
+                        <label for="CommentTitle">Title</label>
+                        <input name="CommentTitle" id="CommentTitle" type="text" required />
                     </p>
-                </header>
-                <p>@comment.Body</p>
+                    <p>
+                        <label for="CommentAuthor">Author</label>
+                        <input name="CommentAuthor" id="CommentAuthor" type="text" required />
+                    </p>
+                    <p>
+                        <label for="AuthorURL">Website</label>
+                        <input name="AuthorURL" id="AuthorURL" type="url" />
+                    </p>
+                    <p>
+                        <label for="Body">Comment</label>
+                        <textarea name="Body" id="Body" required></textarea>
+                    </p>
+                    <p>
+                        <input id="PostID" name="PostID" type="hidden" value="@post.ID">
+                    </p>
+                    <p><input type="submit" value="Submit" /></p>
+                </form>
+            </div>
+        </div>
 
-            </article>
-        }
-        }
-        }
-        }
-    </section>
-
-    <input type="button" id="comment_button" value="Post comment" style="padding:7px" />
-    <!-- how to pass params to actionlink? maybe js?-->
-    <div id="comment_div" style="display:none;padding: 15px;">
-        <form id="comment_form" action="@Url.Action("Create", "Comment")" method="post">
-            @Html.AntiForgeryToken()
-            <h3>Post a comment to the "@post.Title" post</h3>
-            <p>
-                <label for="Title">Title</label>
-                <input name="Title" id="title" type="text" required />
-            </p>
-            <p>
-                <label for="author">Author</label>
-                <input name="author" id="author" type="text" required />
-            </p>
-            <p>
-                <label for="website">Website</label>
-                <input name="website" id="website" type="url" />
-            </p>
-            <p>
-                <label for="comment">Comment</label>
-                <textarea name="comment" id="comment" required></textarea>
-            </p>
-            <p>
-                <input id="postID" type="hidden" value="@post.ID">
-            </p>
-            <p><input type="submit" value="Submit" /></p>
-        </form>
-    </div>
-
-}
+    }
 }
 
 </section>

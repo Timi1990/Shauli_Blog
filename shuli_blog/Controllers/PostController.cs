@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using shuli_blog.DAL;
 using shuli_blog.Models;
+using shuli_blog.Controllers;
+using System.Web.Routing;
 
 namespace shuli_blog.Controllers
 {
@@ -51,9 +53,10 @@ namespace shuli_blog.Controllers
         {
             if (ModelState.IsValid)
             {
+                post.PublishDate = DateTime.Now;
                 db.Posts.Add(post);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new RouteValueDictionary(new { controller = "BlogPage", action = "Index"}));
             }
 
             return View(post);
@@ -124,5 +127,17 @@ namespace shuli_blog.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult SearchPost()
+        {
+            return View();
+        }
+
+        public ActionResult EditComments(int id)
+        {
+            List<Comment> list = db.Comments.Where(comment => comment.PostID == id).ToList<Comment>();
+            return View(list);
+        }
+
     }
 }

@@ -1,0 +1,28 @@
+﻿@model List <shuli_blog.Models.Comment>  
+
+@{
+    ViewBag.Title = "Edit Comments";
+}
+
+<h2>EditComments</h2>
+<table>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommentTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CommentAuthor)
+        </td>
+        
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", "Comment",new { id = item.ID }, null) |
+            @Html.ActionLink("Details", "Details", "Comment", new { id = item.ID }, null) |
+            @Html.ActionLink("Delete", "Delete", "Comment", new { id = item.ID }, null)
+        </td>
+    </tr>
+}
+
+</table>

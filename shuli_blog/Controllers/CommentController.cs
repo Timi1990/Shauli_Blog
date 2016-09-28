@@ -13,8 +13,8 @@ namespace shuli_blog.Controllers
 {
     public class CommentController : Controller
     {
-        private BloggingContext db = new BloggingContext();
 
+        private BloggingContext db = new BloggingContext();
         // GET: Comment
         public ActionResult Index()
         {
@@ -55,7 +55,7 @@ namespace shuli_blog.Controllers
             {
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index" , "BlogPage");
             }
 
             ViewBag.PostID = new SelectList(db.Posts, "ID", "Title", comment.PostID);

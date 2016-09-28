@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "SearchPost";
+}
+
+<section id="filter">
+    <!-- Filter posts-->
+    <header>
+        <h2>Filter/search posts</h2>
+    </header>
+    <!--The fiter and search elements -->
+    <div class="filter_fiv">
+        <form>
+            By date:
+            <input type="date" value="post date">
+            <input type="submit" value="Search by date" style="margin-left: 0px" ;><br>
+
+            By author name:
+            <input type="text">
+            <input type="submit" value="Search by author"><br>
+            By author's email:
+            <input type="email" name="email">
+            <input type="submit" value="Search"><br>
+            Words from comments:
+            <input type="text">
+            <input type="submit" value="Search by words"><br>
+            Number of min. comments:
+            <input type="range" name="comments" min="0" max="10">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+</section>

@@ -24,7 +24,7 @@ namespace shuli_blog.DAL
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             Database.SetInitializer<FanContext>(null);
             base.OnModelCreating(modelBuilder);
-        }
+        }  
 
     }
 }

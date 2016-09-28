@@ -33,7 +33,6 @@ namespace shuli_blog.Controllers
                 {
                     p.CommentsList = db.Comments.Where(comment => comment.PostID == p.ID).ToList<Comment>();
                 }
-                
                 return View(allPosts);
             
              
