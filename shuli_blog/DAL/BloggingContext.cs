@@ -13,6 +13,10 @@ namespace shuli_blog.DAL
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
+        public DbSet<FanClub> Clubs { get; set; }
+
+        public DbSet<Fan> Fans { get; set; }
+
         public BloggingContext()
             : base("BloggingContext")
         {

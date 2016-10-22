@@ -27,7 +27,7 @@ namespace shuli_blog.Models
         [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Author")]
-        public string Author { get; set; }
+        public Fan Author { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "AuthorsWebsite")]

@@ -25,15 +25,17 @@ namespace shuli_blog.Models
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
-
-
-        
+       
         public Gender gender { get; set; }
-        
-        
+                
         public DateTime Bday { get; set; }
 
-        
         public int Seniority { get; set; }
+
+        public List<Post> Posts { get; set; }
+
+        public int ClubID { get; set; }
+
+        public FanClub Club { get; set; }
     } 
 }

@@ -21,22 +21,14 @@ namespace shuli_blog.Controllers
         
         public ActionResult Index()
         {
-            /*Fan fan = service.create("john", "cena", DateTime.Parse("2004-02-04"), 6);
-            service.details(fan);
-            Fan fan2 = service.index(3);
-            service.details(fan2);
-            List<Fan> list = service.list();
-            Boolean boo = service.delete(fan2);*/
-
             List<Post> allPosts = db.Posts.OrderBy(post => post.PublishDate).ToList<Post>();
                 foreach (Post p in allPosts)
                 {
                     p.CommentsList = db.Comments.Where(comment => comment.PostID == p.ID).ToList<Comment>();
                 }
-                return View(allPosts);
-            
-             
+                return View(allPosts);             
         }
+
 
         public ActionResult GetMostUpdatedPost()
         {

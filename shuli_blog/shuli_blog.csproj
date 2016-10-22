@@ -188,6 +188,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BlogPageController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
+    <Compile Include="Controllers\FanClubController.cs" />
     <Compile Include="Controllers\FanPageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="DAL\FanContext.cs" />
@@ -199,9 +200,15 @@
     <Compile Include="Migrations\201609121824539_Initial.Designer.cs">
       <DependentUpon>201609121824539_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610041000304_second.cs" />
+    <Compile Include="Migrations\201610041000304_second.Designer.cs">
+      <DependentUpon>201610041000304_second.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\commentsPerPostCounter.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentCrud.cs" />
+    <Compile Include="Models\FanClub.cs" />
     <Compile Include="Models\FanCrud.cs" />
     <Compile Include="Models\Fan.cs" />
     <Compile Include="Models\ICrud.cs" />
@@ -317,7 +324,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\BlogPage\Index.cshtml" />
-    <Content Include="Views\FanPage\Index.cshtml" />
     <Content Include="Views\Post\Create.cshtml" />
     <Content Include="Views\Post\Delete.cshtml" />
     <Content Include="Views\Post\Details.cshtml" />
@@ -328,6 +334,12 @@
     <Content Include="Views\Comment\Details.cshtml" />
     <Content Include="Views\Comment\Edit.cshtml" />
     <Content Include="Views\Comment\Index.cshtml" />
+    <Content Include="Views\Post\SearchPost.cshtml" />
+    <Content Include="Views\FanClub\Create.cshtml" />
+    <Content Include="Views\FanClub\Delete.cshtml" />
+    <Content Include="Views\FanClub\Details.cshtml" />
+    <Content Include="Views\FanClub\Edit.cshtml" />
+    <Content Include="Views\FanClub\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -340,6 +352,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201609121824539_Initial.resx">
       <DependentUpon>201609121824539_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610041000304_second.resx">
+      <DependentUpon>201610041000304_second.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

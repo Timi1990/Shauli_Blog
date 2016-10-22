@@ -133,6 +133,52 @@ namespace shuli_blog.Controllers
             return View();
         }
 
+        public ActionResult PostBySearchResult(string title, DateTime? date, string author_name, string author_website, string comments_words)
+        {
+            List<Post> PostList = new List<Post>();
+
+            if (comments_words == string.Empty)
+            {
+                PostList = db.Posts.Where(post => ((title == "") || post.Title.Contains(title)) &&
+                                                      ((author_name == "") || post.Author.Contains(author_name)) &&
+                                                     ((date == null) || post.PublishDate == date) &&
+                                                     ((author_website == "") || post.URL.Contains(author_website))).ToList<Post>();
+
+
+            }
+            else
+            {
+                var result = db.Comments.AsQueryable().Where(comm => comm.Body.Contains(comments_words)).Join(db.Posts,
+                    comm => comm.PostID,
+                    pos => pos.ID,
+                    (comm, pos) => new
+                    {
+                        id = pos.ID,
+                        title = pos.Title,
+                        authorName = pos.Author,
+                        authorSite = pos.URL,
+                        publishDate = pos.PublishDate,
+                        content = pos.Body
+                    });
+
+
+                foreach (var item in result)
+                {
+                    Post p = new Post();
+                    p.ID = item.id;
+                    p.Title = item.title;
+                    p.Author = item.authorName;
+                    p.URL = item.authorSite;
+                    p.PublishDate = item.publishDate;
+                    p.Body = item.content;
+                    PostList.Add(p);
+                }
+            }
+            ViewBag.SearchReuslt = PostList.Count;
+            return PartialView("SearchPost", PostList);
+            
+        }
+
         public ActionResult EditComments(int id)
         {
             List<Comment> list = db.Comments.Where(comment => comment.PostID == id).ToList<Comment>();

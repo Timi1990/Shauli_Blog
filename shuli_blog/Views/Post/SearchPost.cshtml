@@ -1,7 +1,12 @@
-﻿@{
-    ViewBag.Title = "SearchPost";
-}
+﻿@model IEnumerable<shuli_blog.Models.Post>
 
+@{
+    ViewBag.Title = "SearchPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("PostBySearchResult", "Post", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
 <section id="filter">
     <!-- Filter posts-->
     <header>
@@ -9,24 +14,81 @@
     </header>
     <!--The fiter and search elements -->
     <div class="filter_fiv">
-        <form>
-            By date:
-            <input type="date" value="post date">
-            <input type="submit" value="Search by date" style="margin-left: 0px" ;><br>
+        @Html.ValidationSummary(true)
+        By title:
+        <input type="text" name="title" placeholder="Enter title"><br />
+            
+        By date:
+        <input type="date" name ="date" placeholder="Enter post's date"><br />
+            
 
-            By author name:
-            <input type="text">
-            <input type="submit" value="Search by author"><br>
-            By author's email:
-            <input type="email" name="email">
-            <input type="submit" value="Search"><br>
-            Words from comments:
-            <input type="text">
-            <input type="submit" value="Search by words"><br>
-            Number of min. comments:
-            <input type="range" name="comments" min="0" max="10">
-            <input type="submit" value="Search">
-        </form>
+        By author name:
+        <input type="text" name="author_name" placeholder="Enter author's name'"><br />
+            
+        By author's website:
+        <input type="text" name="author_website" placeholder="Enter author's website'"><br />
+            
+        Words from comments:
+        <input type="text" name="comments_words"><br /><br /><br />            
+
+        <input type="submit" value="Search">
     </div>
 
+    @if (Model != null && ViewBag.SearchReuslt > 0)
+    {
+    <h4>Search Result:</h4>
+    <br>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.URL)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PublishDate)
+            </th>
+
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.URL)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublishDate)
+                </td>
+            </tr>
+        }
+    </table>
+
+    }
+    else
+    {
+    <tr>
+        <td id="no_result"colspan="4" style="display:none">
+            no result found
+        </td>
+    </tr>
+    }
+    <br>
+    <br>
+    <div>
+        @Html.ActionLink("Back to main page", "Index", "BlogPage")
+    </div>
+   
 </section>
+}

@@ -17,10 +17,14 @@ namespace shuli_blog.Migrations
                         gender = c.Int(nullable: false),
                         Bday = c.DateTime(nullable: false),
                         Seniority = c.Int(nullable: false),
+                        ClubID = c.Int(nullable:false), 
                     })
-                .PrimaryKey(t => t.ID);
+                .PrimaryKey(t => t.ID)
+            .ForeignKey("dbo.FanClub", t => t.ClubID, cascadeDelete: true);
 
-            
+        
+
+
             CreateTable(
             "dbo.Post",
             c => new
@@ -48,6 +52,9 @@ namespace shuli_blog.Migrations
                     Body = c.String(nullable: false),
                 }).PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Post", t => t.PostID, cascadeDelete: true);
+
+            
+                
             
         }
         
