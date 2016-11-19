@@ -24,10 +24,12 @@ namespace shuli_blog.Models
         [Display(Name = "PostTitle")]
         public string Title { get; set; }
 
+        
+
+
         [Required]
-        [DataType(DataType.Text)]
         [Display(Name = "Author")]
-        public Fan Author { get; set; }
+        public string Author { get; set; }
 
         [DataType(DataType.Text)]
         [Display(Name = "AuthorsWebsite")]

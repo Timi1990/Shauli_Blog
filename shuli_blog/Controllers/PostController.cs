@@ -10,6 +10,12 @@ using shuli_blog.DAL;
 using shuli_blog.Models;
 using shuli_blog.Controllers;
 using System.Web.Routing;
+using WebMatrix.WebData;
+using System.Web.Security;
+using System.Web.UI;
+using shuli_blog.Filters;
+using System.IO;
+
 
 namespace shuli_blog.Controllers
 {
@@ -18,9 +24,33 @@ namespace shuli_blog.Controllers
         private BloggingContext db = new BloggingContext();
 
         // GET: Post
+        
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            //String currentUser = User.Identity.Name;
+           // shuli_blog.DAL.BloggingContext.UserProfile user = db.UserProfiles.FirstOrDefault(acc => acc.UserName == User.Identity.Name);
+            string userName = User.Identity.Name;
+            var profile = db.UserProfiles.AsQueryable().Where(user=>user.UserName.Equals(userName)).Join(db.Roles,
+                user=>user.Role.ID, 
+                role=> role.ID,
+                (user, role)=> new {
+                    ID = role.ID,
+                    Name = role.Name
+                });
+            Role userRole = new Role();
+            foreach(var v in profile){
+          
+                userRole.ID = v.ID;
+                userRole.Name = v.Name;
+            }
+
+
+            if (userRole.ID == 1)
+            {
+                return View(db.Posts.ToList());   
+            }
+            return RedirectToAction("NoPermissions");
+            
         }
 
         // GET: Post/Details/5
@@ -49,17 +79,27 @@ namespace shuli_blog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,Author,URL,PublishDate,Body,Video,Image")] Post post)
+        public ActionResult Create([Bind(Include = "ID,Title,Author,URL,PublishDate,Body,Video,Image")] Post post
+            , HttpPostedFileBase imageFile, HttpPostedFileBase videoFile)
         {
-            if (ModelState.IsValid)
+           
+            post.Author = User.Identity.Name;
+            post.PublishDate = DateTime.Now;
+            if (imageFile != null && imageFile.ContentLength > 0)
             {
-                post.PublishDate = DateTime.Now;
-                db.Posts.Add(post);
-                db.SaveChanges();
-                return RedirectToAction("Index", new RouteValueDictionary(new { controller = "BlogPage", action = "Index"}));
+                string imageName = post.Image;
+                string path = Server.MapPath("~/Files");
+                imageFile.SaveAs(Path.Combine(path, imageName));
             }
-
-            return View(post);
+            if (videoFile != null && videoFile.ContentLength > 0)
+            {
+                string videoName = post.Video;
+                string path = Server.MapPath("~/Files");
+                videoFile.SaveAs(Path.Combine(path, videoName));
+            }
+            db.Posts.Add(post);
+            db.SaveChanges();
+            return RedirectToAction("Index", new RouteValueDictionary(new { controller = "BlogPage", action = "Index"}));
         }
 
         // GET: Post/Edit/5
@@ -117,6 +157,11 @@ namespace shuli_blog.Controllers
             db.Posts.Remove(post);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult NoPermissions()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

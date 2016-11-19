@@ -1,0 +1,29 @@
+﻿@model IEnumerable<shuli_blog.DAL.BloggingContext.UserProfile>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NAME</th>
+        </tr>
+        @foreach (shuli_blog.DAL.BloggingContext.UserProfile up in Model)
+        {
+            <tr>
+                <td>
+                    @up.UserId
+                </td>
+                <td>
+                    @up.UserName
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+

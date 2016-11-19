@@ -1,0 +1,24 @@
+﻿@model IEnumerable<shuli_blog.Models.Address>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKV-XI6bYhtXoonf0d_2XFS6h4bsCmTro">
+</script>
+
+
+<h2>Map & Weather</h2>
+
+<div style="float:left; width:100%">
+    <div style="float:left">
+        <h1> weather in your area:  </h1>
+    </div>
+    <div style="float:left" id="weather"></div>
+</div>
+
+<div id="map" style="width: 500px; height: 400px;"></div>  
+
+<script type="text/javascript" src="~/Scripts/Weather/weather.js"></script>
+<script type="text/javascript" src="~/Scripts/Map/map.js"></script>

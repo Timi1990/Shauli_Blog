@@ -13,7 +13,7 @@ namespace shuli_blog.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201609121824539_Initial"; }
+            get { return "201611191141120_Initial"; }
         }
         
         string IMigrationMetadata.Source

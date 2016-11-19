@@ -11,7 +11,7 @@ namespace shuli_blog.Models
     public class FanCrud : ICrud<Fan>
     {
         private static string NEW_LINE = "\n";
-        private FanContext db = new FanContext();
+        private BloggingContext db = new BloggingContext();
 
         public Fan index(int id)
         {

@@ -9,7 +9,7 @@ using System.Web;
 
 namespace shuli_blog.Models
 {
-    public class Fan {
+    public class Fan  {
         public enum Gender
         {
             MALE,
@@ -32,10 +32,13 @@ namespace shuli_blog.Models
 
         public int Seniority { get; set; }
 
-        public List<Post> Posts { get; set; }
+   
 
         public int ClubID { get; set; }
 
         public FanClub Club { get; set; }
+
+        public Address Address { get; set; }
+
     } 
 }

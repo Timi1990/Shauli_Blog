@@ -47,6 +47,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="GoogleMaps.LocationServices, Version=0.1.5926.26040, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GoogleMaps.LocationServices.0.9.8.6\lib\net40\GoogleMaps.LocationServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebHelpers.3.2.3\lib\net45\Microsoft.Web.Helpers.dll</HintPath>
@@ -186,34 +190,34 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\BlogPageController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\FanClubController.cs" />
     <Compile Include="Controllers\FanPageController.cs" />
     <Compile Include="Controllers\PostController.cs" />
-    <Compile Include="DAL\FanContext.cs" />
     <Compile Include="DAL\BloggingContext.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201609121824539_Initial.cs" />
-    <Compile Include="Migrations\201609121824539_Initial.Designer.cs">
-      <DependentUpon>201609121824539_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610041000304_second.cs" />
-    <Compile Include="Migrations\201610041000304_second.Designer.cs">
-      <DependentUpon>201610041000304_second.cs</DependentUpon>
+    <Compile Include="Migrations\201611191141120_Initial.cs" />
+    <Compile Include="Migrations\201611191141120_Initial.Designer.cs">
+      <DependentUpon>201611191141120_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\commentsPerPostCounter.cs" />
+    <Compile Include="Models\CommentsPerPostCounter.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\CommentCrud.cs" />
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\FanClub.cs" />
     <Compile Include="Models\FanCrud.cs" />
     <Compile Include="Models\Fan.cs" />
     <Compile Include="Models\ICrud.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostCrud.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CommentService.cs" />
     <Compile Include="Services\PostService.cs" />
@@ -278,6 +282,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="GoogleMaps.LocationServices.readme.txt" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -291,7 +296,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\Map\map.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\post\post.js" />
+    <Content Include="Scripts\Weather\weather.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -340,21 +348,37 @@
     <Content Include="Views\FanClub\Details.cshtml" />
     <Content Include="Views\FanClub\Edit.cshtml" />
     <Content Include="Views\FanClub\Index.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Address\Create.cshtml" />
+    <Content Include="Views\Address\Delete.cshtml" />
+    <Content Include="Views\Address\Details.cshtml" />
+    <Content Include="Views\Address\Edit.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
+    <Content Include="Views\Post\NoPermissions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Files\" />
-    <Folder Include="Filters\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609121824539_Initial.resx">
-      <DependentUpon>201609121824539_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610041000304_second.resx">
-      <DependentUpon>201610041000304_second.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201611191141120_Initial.resx">
+      <DependentUpon>201611191141120_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

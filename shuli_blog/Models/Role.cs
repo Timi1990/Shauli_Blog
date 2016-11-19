@@ -5,10 +5,11 @@ using System.Web;
 
 namespace shuli_blog.Models
 {
-    public class CommentsPerPostCounter
+    public class Role
     {
-        public int Count { get; set; }
 
-        public Post Post { get; set; }
+        public int ID { get; set; }
+
+        public string Name { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace shuli_blog.Services
 
         }
 
-        public Post create(string title , string author , string url , DateTime publishDate , string body , string video,
+        public Post create(string title, string author, string url, DateTime publishDate, string body, string video,
             string image , List<Comment> comments)
         {
             Post post = createPost(title, author, url, publishDate, body, video, image, comments);
@@ -40,7 +40,7 @@ namespace shuli_blog.Services
             return postCrud.delete(Post);
         }
 
-       
+
 
         private Post createPost(string title, string author, string url, DateTime publishDate, string body, string video,
             string image, List<Comment> comments)
